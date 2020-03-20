@@ -1,1 +1,10 @@
 require('./bootstrap');
+require('tabler-ui/dist/assets/js/vendors/bootstrap.bundle.min');
+require('tabler-ui/dist/assets/js/vendors/chart.bundle.min.js');
+require('tabler-ui/dist/assets/js/vendors/circle-progress.min.js');
+require('tabler-ui/dist/assets/js/vendors/jquery-jvectormap-2.0.3.min.js');
+require('tabler-ui/dist/assets/js/vendors/jquery-jvectormap-de-merc.js');
+require('tabler-ui/dist/assets/js/vendors/jquery-jvectormap-world-mill.js');
+require('tabler-ui/dist/assets/js/vendors/jquery.sparkline.min.js');
+require('tabler-ui/dist/assets/js/vendors/jquery.tablesorter.min.js');
+require('tabler-ui/dist/assets/js/vendors/selectize.min.js');

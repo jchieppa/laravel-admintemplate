@@ -124,6 +124,23 @@ return [
     'cipher' => 'AES-256-CBC',
 
     /*
+     |--------------------------------------------------------------------------
+     | Custom Configuration
+     |--------------------------------------------------------------------------
+     |
+     | Here you may configure the any additional settings for your application.
+     |
+     */
+
+    'vcs' => [
+        'name' => env('VCS_NAME'),
+        'address' => env('VCS_ADDR'),
+        'email' => env('VCS_EMAIL'),
+        'phone' => env('VCS_PHONE'),
+        'fax' => env('VCS_FAX'),
+    ],
+
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
@@ -176,6 +193,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
     ],
 

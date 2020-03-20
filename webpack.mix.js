@@ -12,5 +12,9 @@ require('laravel-mix-purgecss');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/assets/js')
+    .sass('resources/sass/app.scss', 'public/assets/css')
+    .copyDirectory("resources/images", "public/assets/images")
+    .copyDirectory("resources/avatars", "public/assets/avatars");;
+
+mix.copy('node_modules/tabler-ui/dist/assets/css/dashboard.css', 'public/assets/css');
