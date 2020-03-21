@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
 use App\User;
-use Spatie\Permission\Models\Role;
+use App\Role;
+use Image;
+use File;
+//use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -44,6 +47,8 @@ class UsersController extends Controller
             $user->assignRole($request->input('roles'));
         }
 
+        notify()->success("User $user->name created!");
+
         return redirect()->route('admin.users.index')->with(['success' => 'User created']);
     }
 
@@ -52,7 +57,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::get()->pluck('name', 'name');
+        $roles = Role::filterByUserPermissions($user)->get()->pluck('name', 'name');
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -65,8 +70,25 @@ class UsersController extends Controller
         $user->update($request->all());
 
         if($request->has('roles')) {
-            $user->assignRole($request->input('roles'));
+            $user->syncRoles($request->input('roles'));
         }
+
+        if(request()->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save( public_path('assets/avatars/' . strtolower($filename) ) );
+
+            /*
+             *  delete old Avatar if not default
+             */
+            if($user->avatar != 'default.png'){
+                File::delete(public_path('assets/avatars/' . $user->avatar ));
+            }
+            $user->avatar = $filename;
+            $user->save();
+        }
+
+        notify()->success("User $user->name updated!");
 
         return redirect()->route('admin.users.index')->with(['success' => 'User Updated']);
     }
@@ -86,6 +108,8 @@ class UsersController extends Controller
         abort_if(Gate::denies('users_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user->delete();
+
+        notify()->warning("User $user->name deleted!");
 
         return redirect()->route('admin.users.index')->with(['error' => 'User Deleted']);
     }

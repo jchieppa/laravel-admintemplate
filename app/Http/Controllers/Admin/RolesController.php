@@ -44,6 +44,8 @@ class RolesController extends Controller
             $role->givePermissionTo($request->input('permission'));
         }
 
+        notify()->success("Role $role->name created!");
+
         return redirect()->route('admin.roles.index')->with(['success' => 'Role created']);
     }
 
@@ -70,6 +72,8 @@ class RolesController extends Controller
             $role->syncPermissions($request->input('permission'));
         }
 
+        notify()->success("Role $role->name updated!");
+
         return redirect()->route('admin.roles.index')->with(['success' => 'Role Updated']);
     }
 
@@ -89,6 +93,8 @@ class RolesController extends Controller
         abort_if(Gate::denies('roles_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $role->delete();
+
+        notify()->warning("Role $role->name deleted!");
 
         return redirect()->route('admin.roles.index')->with(['error' => 'Role Deleted']);
     }

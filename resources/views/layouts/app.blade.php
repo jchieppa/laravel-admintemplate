@@ -7,7 +7,11 @@
         @include('layouts.partials.main-menu')
         <main class="py-4">
             @yield('content')
+            @stack('javascript')
         </main>
     </div>
 </body>
+<!-- Notification Scripts -->
+@notify_js
+@include('layouts.partials.notifications')
 </html>

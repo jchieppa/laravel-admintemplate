@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,43 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Hash password
+     * @param $input
+     */
+    public function setPasswordAttribute($input)
+    {
+        if ($input)
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+    }
+
+    /**
+     * Standardize name saved with capitalization
+     * @param $input
+     */
+    public function setNameAttribute($input)
+    {
+        $names = explode(' ', strtolower($input));
+        if(count($names) > 1){
+            for($i=0; $i < count($names); $i++){
+                $names[$i] = ucfirst($names[$i]);
+            }
+            $this->attributes['name'] = implode(' ', $names);
+        } else {
+            $this->attributes['name'] = ucfirst($names[0]);
+        }
+
+    }
+
+    /**
+     * Standardize email to all lowercase
+     * @param $input
+     */
+    public function setEmailAttribute($input)
+    {
+        $this->attributes['email'] = strtolower($input);
+    }
 
     public function role()
     {

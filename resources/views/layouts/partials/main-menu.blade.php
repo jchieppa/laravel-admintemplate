@@ -22,8 +22,6 @@
                             @endcan
                         </div>
                     </li>
-
-
                 </ul>
             </div>
         </div>

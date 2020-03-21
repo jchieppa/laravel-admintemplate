@@ -7,22 +7,31 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Styles -->
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+
+    <!-- Notification Styles -->
+    @notify_css
+
+
     <!-- Scripts -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 
-    <!-- Styles -->
-    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 
-    <script>
-        requirejs.config({
-            baseUrl: '.'
-        });
-    </script>
+
+{{--    <script>--}}
+{{--        requirejs.config({--}}
+{{--            baseUrl: '.'--}}
+{{--        });--}}
+{{--    </script>--}}
 
 </head>

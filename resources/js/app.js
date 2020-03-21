@@ -1,4 +1,8 @@
+// require('./custom');
 require('./bootstrap');
+require( 'datatables.net-bs4' );
+// require( 'datatables.net-dt' )();
+// require( 'datatables.net-select-dt' )();
 require('tabler-ui/dist/assets/js/vendors/bootstrap.bundle.min');
 require('tabler-ui/dist/assets/js/vendors/chart.bundle.min.js');
 require('tabler-ui/dist/assets/js/vendors/circle-progress.min.js');

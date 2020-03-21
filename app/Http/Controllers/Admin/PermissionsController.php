@@ -29,6 +29,8 @@ class PermissionsController extends Controller
 
         Permission::create($request->all());
 
+        notify()->success("Permission $request->name created!");
+
         return back()->with(['success' => 'Permission Created']);
     }
 
@@ -49,6 +51,8 @@ class PermissionsController extends Controller
 
         $permission->update($request->all());
 
+        notify()->success("Permission $permission->name updated!");
+
         return redirect()->route('admin.permissions.index')->with(['success' => 'Permission Updated']);
     }
 
@@ -57,6 +61,8 @@ class PermissionsController extends Controller
         abort_if(Gate::denies('permissions_manage'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
+
+        notify()->warning("Permission $permission->name deleted!");
 
         return redirect()->route('admin.permissions.index')->with(['error' => 'Permission Deleted']);
     }

@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth'], 'prefix' => 'adm
     Route::resource('permissions', 'PermissionsController')->except(['create', 'show']);
     Route::resource('roles', 'RolesController');
     Route::resource('users', 'UsersController');
+    Route::resource('profile', 'ProfileController');
 });
 
 Route::redirect('/', 'admin/dashboard');
