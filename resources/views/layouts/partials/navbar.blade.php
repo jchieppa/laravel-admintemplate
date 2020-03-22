@@ -34,15 +34,13 @@
                                 <div class="mt-1 small text-muted">{{ ucfirst(Auth::user()->roles()->pluck('name')->first() ) }}</div>
                             </div>
                         </a>
-
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{{ route('admin.profile.edit', Auth::user())}}"><i class="fas fa-users-cog"></i>&nbsp; Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

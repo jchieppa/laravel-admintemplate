@@ -20,5 +20,3 @@ mix.js('resources/js/app.js', 'public/assets/js')
 mix.copy('node_modules/tabler-ui/dist/assets/css/dashboard.css', 'public/assets/css');
 mix.copy('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css', 'public/assets/css');
 mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/assets/js');
-
-

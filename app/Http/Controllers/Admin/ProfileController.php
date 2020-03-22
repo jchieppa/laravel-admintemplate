@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Role;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use File;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
 {
@@ -56,12 +59,15 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return void
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $roles = Role::filterByUserPermissions($user)->get()->pluck('name', 'name');
+
+        return view('admin.profile.edit', compact('user', 'roles'));
     }
 
     /**
@@ -73,6 +79,9 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+        $user->update($request->all());
+
         if(request()->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
@@ -86,7 +95,9 @@ class ProfileController extends Controller
 
         }
 
-        return view('profile.index', array('user' => Auth::user()) );
+        notify()->success("User $user->name profile updated!");
+
+        return redirect()->route('admin.dashboard');
     }
 
     /**

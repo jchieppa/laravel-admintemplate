@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::redirect('/', '/admin/home');
+    Route::redirect('/', '/admin/dashboard');
     Route::get('/dashboard', 'HomeController@index2')->name('dashboard');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('permissions', 'PermissionsController')->except(['create', 'show']);
     Route::resource('roles', 'RolesController');
     Route::resource('users', 'UsersController');
-    Route::resource('profile', 'ProfileController');
+    Route::resource('profile', 'ProfileController')->only(['edit','update']);
 });
 
 Route::redirect('/', 'admin/dashboard');
