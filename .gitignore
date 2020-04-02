@@ -14,3 +14,7 @@ npm-debug.log
 yarn-error.log
 .editorconfig
 .gitattributes
+.styleci.yml
+.idea/misc.xml
+.idea/php.xml
+.idea/vcssms.iml

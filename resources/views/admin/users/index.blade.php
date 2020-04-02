@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{{ $user->id ?? '' }}</td>
                                     <td>{{ $user->name ?? '' }}</td>
-                                    <td>{{ strtolower($user->email) ?? '' }}</td>
+                                    <td>{{ $user->email ?? '' }}</td>
                                     <td>
                                         @foreach($user->roles()->pluck('name') as $role)
                                             <span class="badge badge-info">{{ ucfirst($role) }}</span>
@@ -58,6 +58,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.dataTable').DataTable({
+                "pageLength": 25,
                 "columnDefs": [
                     {
                         "width": "10%",

@@ -24,6 +24,12 @@ class PermissionSeed extends Seeder
             ],
             [
                 'name' => 'permissions_manage'
+            ],
+            [
+                'name' => 'contacts_manage'
+            ],
+            [
+                'name' => 'contacts_view'
             ]
         ];
 
