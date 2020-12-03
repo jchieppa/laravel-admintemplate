@@ -5,6 +5,7 @@
     <div id="app">
         @include('layouts.partials.navbar')
         @include('layouts.partials.main-menu')
+        @include('layouts.partials.errors')
         <main class="py-4">
             @yield('content')
             @stack('javascript')

@@ -12,6 +12,7 @@
     <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
+
     <!-- Notification Styles -->
     @notify_css
 
@@ -20,18 +21,13 @@
     <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
 
+    <!-- Select2 -->
+    <link href="{{ asset('assets/css/select2.css') }} " rel="stylesheet" />
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-
-
-
-{{--    <script>--}}
-{{--        requirejs.config({--}}
-{{--            baseUrl: '.'--}}
-{{--        });--}}
-{{--    </script>--}}
 
 </head>

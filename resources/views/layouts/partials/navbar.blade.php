@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -9,12 +11,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="nav navbar-nav ml-auto navbar-right">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -26,7 +25,7 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown pl-3">
+                    <li class="nav-item ">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0 text-left" data-toggle="dropdown">
                             <span class="avatar" style="background-image: url({{ asset('assets/avatars') . '/' . Auth::user()->avatar }})"></span>
                             <div class="d-none d-lg-block pl-2">
@@ -36,6 +35,12 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item " href="{{ route('admin.profile.edit', Auth::user())}}"><i class="fas fa-users-cog"></i>&nbsp; Profile</a>
+                            @if (!App::environment('production'))
+                                    <a class="dropdown-item" href="#"><i class="fa fa-asterisk"></i>&nbsp;&nbsp;{{ App::environment() }} environment</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-asterisk"></i>&nbsp; Laravel Framework: {{ app()->version() }} </a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-asterisk"></i>&nbsp;&nbsp;Php Version: {{ PHP_VERSION }} </a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-asterisk"></i>&nbsp;&nbsp;Current Commit: {{ `git rev-parse --short HEAD` }} </a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>

@@ -132,12 +132,11 @@ return [
      |
      */
 
-    'vcs' => [
-        'name' => env('VCS_NAME'),
-        'address' => env('VCS_ADDR'),
-        'email' => env('VCS_EMAIL'),
-        'phone' => env('VCS_PHONE'),
-        'fax' => env('VCS_FAX'),
+    'vendor' => [
+        'name' => env('NAME'),
+        'address' => env('ADDRESS'),
+        'email' => env('EMAIL'),
+        'phone' => env('PHONE'),
     ],
 
     /*
