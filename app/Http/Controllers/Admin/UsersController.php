@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
-use App\User;
-use App\Role;
+use App\Models\User;
+use App\Models\Role;
 use Image;
 use File;
 //use Spatie\Permission\Models\Role;

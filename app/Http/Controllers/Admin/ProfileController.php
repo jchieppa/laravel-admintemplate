@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Image;
